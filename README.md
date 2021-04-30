@@ -1,8 +1,10 @@
 # wgman.sh
 
-## manage wireguard user and server configs, on top of wg-quick@wg0
+## Manage wireguard user and server configs, on top of wg-quick@wg0
 
-### INITIALIZE:
+Keeps user data in the same directory as the script itself. Preshared key is being used.
+
+### Initialization:
 
 `wgman.sh init external_ip:port vpn_subnet/mask extra_iface_masquarade 'extra_network/mask, extra_network2/mask'`
 
@@ -10,33 +12,37 @@ eg.  `wgman.sh init example.com:51820  10.50.0.1/24         eth1            '172
 
 If extra_iface_masquarade is provided, traffic will be allowed from/to this interface to VPN clients, so it could be used to open internal company network to VPN clients; subnet of that network shall be passed as extra_networks/masks, so it will be included in the peer configs.
 
-### CREATE USER:
+### Create user:
 
 `wgman.sh create username <IP>/32`
 
-### DELETE USER:
+### Delete user:
 
 `wgman.sh delete username`
 
-### SHOW USER CONFIG:
+### Show user config:
 
 `wgman.sh show username`
 
-### SHOW QR CODE OF USER CONFIG:
+### Show user config in QR code format:
 
 `wgman.sh qr username`
 
-### REGENENERATE SERVER CONFIG, JOINING PARTIAL PEERS CONFIG (DONE AUTOMATICALLY AFTER USER CREATE/DELETE):
+### Regenerate server config 
+
+Joins partial peer configs, not needed as it's performed after each user add/delete operation.
 
 `wgman.sh regen`
 
-### PURGE (remove all users and server configs, but not backups)
+### Purge
+
+Removes all users and server configs, but not backups.
 
 `wgman.sh purge`
 
 ### Misc info
 
-BTW: after each action, in ./.backup/ directory, all configs are backed up.
+After each action, in ./.backup/ directory, all configs are backed up.
 
 ### License
 
